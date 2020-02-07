@@ -25,8 +25,10 @@
 					<a href="/login" class="button {{Request::path() == 'login' ? 'special' : ''}}">Login</a></li>
 			</ul>
 		</section>
-        @yield('content')
 
+		<section class='wrapper'>
+        @yield('content')
+		</section>
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="copyright">

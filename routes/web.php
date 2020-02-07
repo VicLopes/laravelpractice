@@ -15,12 +15,19 @@
 //     return view('welcome');
 // });
 
+use App\Http\Controllers\ArticlesController;
+
 Route::get('/', function () {
     return view('start', [
         'articles' => App\Article::take(4)->latest()->get()
     ]);
 });
 
-Route::get('/articles', 'ArticlesController@index');
+Route::get('/template', function() {
+    return view('welcome');
+});
 
+Route::get('/articles', 'ArticlesController@index');
+Route::post('/articles', 'ArticlesController@store');
+Route::get('/articles/create', 'ArticlesController@create');
 Route::get('/articles/{article}', 'ArticlesController@show');
