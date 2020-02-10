@@ -69,8 +69,8 @@
                     class="@error('excerpt') border-danger @enderror" 
                     name="excerpt" 
                     id="excerpt" 
-                    placeholder="Place the Excerpt">
-                    {{ old('excerpt') }}</textarea>
+                    placeholder="Place the Excerpt"
+                    >{{ old('excerpt') }}</textarea>
 
                 @error('excerpt')
                     <p class='text-danger'>{{ $errors -> first('excerpt') }}</p>
@@ -84,8 +84,8 @@
                     name="body" 
                     id="body" 
                     placeholder="Enter your message" 
-                    rows='6'>
-                    {{ old('body') }}</textarea>
+                    rows='6'
+                    >{{ old('body') }}</textarea>
 
                 @error('body')
                     <p class='text-danger'>{{ $errors -> first('body') }}</p>
