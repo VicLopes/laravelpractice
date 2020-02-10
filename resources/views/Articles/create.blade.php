@@ -48,19 +48,48 @@
                 <label class="label" for="title">Title</label>
 
                 <div class="control">
-                    <input class="input" type="text" name="title" id="title" placeholder="Title">
+                    <input 
+                        class="input @error('title') border-danger @enderror" 
+                        type="text" 
+                        name="title" 
+                        id="title" 
+                        placeholder="Title"
+                        value="{{ old('title') }}">
+
+                    @error('title')
+                        <p class='text-danger'>{{ $errors -> first('title') }}</p>
+                    @enderror
                 </div>
             </div>
             
             <div class="12u$">
                 <label class="label" for="excerpt">Excerpt</label>
 
-                <textarea name="excerpt" id="excerpt" placeholder="Place the Excerpt"></textarea>
+                <textarea 
+                    class="@error('excerpt') border-danger @enderror" 
+                    name="excerpt" 
+                    id="excerpt" 
+                    placeholder="Place the Excerpt">
+                    {{ old('excerpt') }}</textarea>
+
+                @error('excerpt')
+                    <p class='text-danger'>{{ $errors -> first('excerpt') }}</p>
+                @enderror
             </div>
 
             <div class="12u$">
                 <label class="label" for="body">Body</label>
-                <textarea name="body" id="body" placeholder="Enter your message" rows='6'></textarea>
+                <textarea 
+                    class="@error('body') border-danger @enderror" 
+                    name="body" 
+                    id="body" 
+                    placeholder="Enter your message" 
+                    rows='6'>
+                    {{ old('body') }}</textarea>
+
+                @error('body')
+                    <p class='text-danger'>{{ $errors -> first('body') }}</p>
+                @enderror
             </div>
 
             <div class="12u$">
