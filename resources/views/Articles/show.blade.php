@@ -11,6 +11,8 @@
         <p>
             {{ $article -> body}}
         </p>
+
+        <a href="{{action('ArticlesController@downloadPDF', $article->id)}}">Download PDF</a>
     </div>
     </div>
 </section>
