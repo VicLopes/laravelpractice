@@ -48,7 +48,6 @@ class ArticlesController extends Controller
     {
         // Show a view to edit an existing item
 
-
         return view('articles.edit', compact('article'));
     }
 
@@ -74,6 +73,6 @@ class ArticlesController extends Controller
     {
         $pdf = PDF::loadView('articles.download', compact('article'));
 
-        return $pdf->download('disney.pdf');
+        return $pdf->download('article.pdf');
     }
 }

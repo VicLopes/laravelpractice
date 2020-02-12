@@ -9,9 +9,8 @@
             <p>{{ $article -> excerpt}}</p>
         </header>
         <p>
-            {{ $article -> body}}
+            {!! nl2br(e($article -> body)) !!}
         </p>
-
         <a href="{{action('ArticlesController@downloadPDF', $article->id)}}">Download PDF</a>
     </div>
     </div>

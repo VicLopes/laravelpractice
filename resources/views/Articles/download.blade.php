@@ -10,9 +10,9 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="/assets/css/main.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <link rel="stylesheet" href="{{ ltrim(('assets/css/main.css'), '/') }}" />
+		{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
+		<link rel="stylesheet" href="assets/css/ie9.css" />
 	</head>
 	<body>
 		<!-- Banner -->
@@ -25,23 +25,13 @@
 					<a href="/login" class="button {{Request::path() == 'login' ? 'special' : ''}}">Login</a></li>
 			</ul>
 		</section>
-
-		<section class='wrapper'>
-            <section id='three' class='wrapper'>
-                <div class='inner'>
-                <div class='row 200%'>
-                    <header>
-                        <h2>{{ $article -> title}}</h2>
-                        <p>{{ $article -> excerpt}}</p>
-                    </header>
-                    <p>
-                        {{ $article -> body}}
-                    </p>
-            
-                </div>
-                </div>
-            </section>
-        </section>
+        <header>
+            <h2>{{ $article -> title}}</h2>
+            <p>{{ $article -> excerpt}}</p>
+        </header>
+        <p>
+            {!! nl2br(e($article -> body)) !!}
+		</p>
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="copyright">
