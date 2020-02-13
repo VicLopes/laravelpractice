@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use PDF;
 
 class ArticlesController extends Controller
 {
@@ -47,7 +48,6 @@ class ArticlesController extends Controller
     {
         // Show a view to edit an existing item
 
-
         return view('articles.edit', compact('article'));
     }
 
@@ -67,5 +67,12 @@ class ArticlesController extends Controller
     public function destroy()
     {
         // Deletes an existing resource
+    }
+
+    public function downloadPDF(Article $article)
+    {
+        $pdf = PDF::loadView('articles.download', compact('article'));
+
+        return $pdf->download('article.pdf');
     }
 }
