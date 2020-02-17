@@ -8,8 +8,13 @@ class Article extends Model
 {
     protected $fillable = ['title', 'excerpt', 'body'];
 
-    public function user()
+    public function author()
     {
-        //
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }

@@ -15,6 +15,6 @@
                         <li><a href="{{$articles->prev_page_url}}" class="button fit small icon fa-arrow-left">Previous Page</a></li>
                         <li><a href="{{$articles->next_page_url}}" class="button fit small icon fa-arrow-right">Next Page</a></li>
                     </ul> --}}
-                    {{$articles->links()}}
+                    {{-- {{$articles->links()}} --}}
 			</section>
 @endsection

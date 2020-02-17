@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Tag;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -18,8 +19,14 @@ class ArticlesController extends Controller
     public function index() 
     {
         // Renders list
+        if (request('tag'))
+        {
+            $articles = Tag::where('name', request('tag'))->findOrFail()->articles;
+        }
+        else{
+            $articles = Article::orderBy('id','desc')->paginate(3);
+        }
 
-        $articles = Article::orderBy('id','desc')->paginate(3);
 
         return view('articles.index', ['articles' => $articles]);
     }
