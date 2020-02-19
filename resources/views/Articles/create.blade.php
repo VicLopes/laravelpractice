@@ -92,6 +92,23 @@
                 @enderror
             </div>
 
+            <div class="6u$">
+                <label class="label" for="body">Tags</label>
+                <select
+                    class="selectpicker"
+                    name="tags[]"
+                    multiple
+                >
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                </select>
+
+                @error('tags')
+                    <p class='text-danger'>{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="12u$">
                 <ul class="actions">
                     <li><input type="submit" value="Submit"/></li>

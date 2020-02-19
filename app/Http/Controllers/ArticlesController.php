@@ -21,7 +21,7 @@ class ArticlesController extends Controller
         // Renders list
         if (request('tag'))
         {
-            $articles = Tag::where('name', request('tag'))->findOrFail()->articles;
+            $articles = Tag::where('name', request('tag'))->firstOrFail()->articles;
         }
         else{
             $articles = Article::orderBy('id','desc')->paginate(3);
@@ -35,18 +35,26 @@ class ArticlesController extends Controller
     {
         // Shows a view to create a new resource
 
-        return view('articles.create');
+        return view('articles.create',[
+            'tags' => Tag::all()
+        ]);
     }
 
     public function store()
     {
         // Persist a created resource
 
-        Article::create(request()->validate([
-            'title'     => ['required', 'min:3', 'max:255'],
-            'excerpt'   => 'required',
-            'body'      => 'required'
-        ]));
+        // Article::create(request()->validate([
+        //     'title'     => ['required', 'min:3', 'max:255'],
+        //     'excerpt'   => 'required',
+        //     'body'      => 'required'
+        // ]));
+
+        $article = new Article($this->validateArticle());
+        $article -> user_id = 1;
+        $article -> save();
+
+        $article->tags()->attach(request('tags'));
 
         return redirect('/articles');
     }
@@ -62,11 +70,7 @@ class ArticlesController extends Controller
     {
         // Persists the edited resource
         
-        $article->update(request()->validate([
-            'title'     => ['required', 'min:3', 'max:255'],
-            'excerpt'   => 'required',
-            'body'      => 'required'
-        ]));
+        $article->update($this->validateArticle());
 
         return redirect('/articles/' . $article->id);
     }
@@ -81,5 +85,15 @@ class ArticlesController extends Controller
         $pdf = PDF::loadView('articles.download', compact('article'));
 
         return $pdf->download('article.pdf');
+    }
+
+    private function validateArticle()
+    {
+        return request()->validate([
+            'title'     => ['required', 'min:3', 'max:255'],
+            'excerpt'   => 'required',
+            'body'      => 'required',
+            'tags'      => 'exists:tags,id'
+        ]);
     }
 }
